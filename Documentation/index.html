@@ -248,6 +248,45 @@ npx turbo run lint --filter=@pouch/mobile</code></pre>
 <!-- CONFIGURATION -->
 <h2 id="configuration">Configuration</h2>
 
+<h3>Server URL (Mobile &rarr; Backend Connection)</h3>
+<p>The mobile app needs to know where the backend server is running. This is configured in two places:</p>
+
+<h4>During Development</h4>
+<p>In development mode (<code>__DEV__ === true</code>), the app automatically connects to <code>http://localhost:3001</code>. No changes needed if you're running everything locally with <code>npm run dev</code>.</p>
+
+<p>If you're testing on a <strong>physical device</strong> (not a simulator), localhost won't work. Set the env var to your computer's LAN IP:</p>
+<pre><code># apps/mobile/.env
+EXPO_PUBLIC_CACHE_SERVER_URL=http://192.168.1.100:3001</code></pre>
+
+<div class="alert alert-info">
+  <strong>Find your LAN IP:</strong> Run <code>ifconfig | grep "inet "</code> on macOS or <code>hostname -I</code> on Linux. Use the 192.168.x.x or 10.x.x.x address.
+</div>
+
+<h4>For Production</h4>
+<p>Open <code>apps/mobile/constants/api.ts</code> and change <code>PROD_URL</code> to your deployed server's URL:</p>
+<pre><code>// constants/api.ts
+const DEV_URL = 'http://localhost:3001';
+const PROD_URL = 'https://api.yourdomain.com';  // ← Change this
+
+export const CACHE_SERVER_URL =
+  process.env.EXPO_PUBLIC_CACHE_SERVER_URL || (__DEV__ ? DEV_URL : PROD_URL);</code></pre>
+
+<p>Alternatively, you can set the env var in your EAS build profile without touching the code:</p>
+<pre><code>// eas.json
+{
+  "build": {
+    "production": {
+      "env": {
+        "EXPO_PUBLIC_CACHE_SERVER_URL": "https://api.yourdomain.com"
+      }
+    }
+  }
+}</code></pre>
+
+<div class="alert alert-warning">
+  <strong>Important:</strong> The production URL must use HTTPS. Make sure your server has SSL configured (see <a href="#deploy-server">Deploy Server</a> &gt; Nginx + Certbot).
+</div>
+
 <h3>Alchemy Setup</h3>
 <p>Alchemy provides blockchain data (token balances, transactions, gas estimation) for the mobile app.</p>
 <ol>
