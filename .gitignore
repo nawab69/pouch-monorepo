@@ -42,5 +42,9 @@ yarn-error.log*
 # TypeScript
 *.tsbuildinfo
 
+# Firebase / Google
+google-services.json
+GoogleService-Info.plist
+
 # Misc
 *.pem
