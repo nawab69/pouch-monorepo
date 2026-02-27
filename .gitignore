@@ -46,5 +46,11 @@ yarn-error.log*
 google-services.json
 GoogleService-Info.plist
 
+# Apple credentials
+credentials/
+*.p8
+*.p12
+*.mobileprovision
+
 # Misc
 *.pem

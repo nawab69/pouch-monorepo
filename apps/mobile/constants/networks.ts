@@ -1,7 +1,8 @@
 import { Network, NetworkId } from '@/types/blockchain';
 
-// Alchemy API Key - move to environment variables for production
-export const ALCHEMY_API_KEY = 'vhMdHQc515gXB3rXMkVZWi3HI4SXZq7P'; // Replace with your actual key
+// Alchemy API Key — get yours free at https://www.alchemy.com
+// Replace with your own key before running the app
+export const ALCHEMY_API_KEY = 'YOUR_ALCHEMY_API_KEY';
 
 export const NETWORKS: Record<NetworkId, Network> = {
   ethereum: {

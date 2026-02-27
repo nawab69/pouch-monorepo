@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pouch — Documentation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- Sidebar Navigation -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <h1>Pouch <span class="version">v1.0</span></h1>
+    <span>Crypto Wallet Documentation</span>
+  </div>
+  <nav>
+    <div class="section-label">Getting Started</div>
+    <a href="#introduction">Introduction</a>
+    <a href="#requirements">Requirements</a>
+    <a href="#installation">Installation</a>
+    <a href="#configuration">Configuration</a>
+
+    <div class="section-label">Architecture</div>
+    <a href="#folder-structure">Folder Structure</a>
+    <a href="#mobile-app">Mobile App</a>
+    <a href="#backend-server">Backend Server</a>
+    <a href="#web-app">Web App</a>
+
+    <div class="section-label">Features</div>
+    <a href="#wallet-management">Wallet Management</a>
+    <a href="#portfolio">Portfolio &amp; Prices</a>
+    <a href="#send-receive">Send &amp; Receive</a>
+    <a href="#token-swaps">Token Swaps</a>
+    <a href="#walletconnect">WalletConnect</a>
+    <a href="#notifications">Notifications</a>
+    <a href="#security">Security</a>
+
+    <div class="section-label">Customization</div>
+    <a href="#theming">Theming &amp; Styling</a>
+    <a href="#networks">Adding Networks</a>
+    <a href="#api-keys">API Keys</a>
+
+    <div class="section-label">Deployment</div>
+    <a href="#deploy-mobile">Mobile (EAS Build)</a>
+    <a href="#deploy-server">Server</a>
+    <a href="#deploy-web">Web</a>
+
+    <div class="section-label">Reference</div>
+    <a href="#api-endpoints">API Endpoints</a>
+    <a href="#env-variables">Environment Variables</a>
+    <a href="#third-party">Third-Party Credits</a>
+    <a href="#changelog">Changelog</a>
+    <a href="#support">Support</a>
+  </nav>
+</aside>
+
+<!-- Main Content -->
+<div class="main">
+
+<!-- INTRODUCTION -->
+<h2 id="introduction">Introduction</h2>
+<p>Thank you for purchasing <strong>Pouch</strong> — a complete, non-custodial cryptocurrency wallet ecosystem. This package includes three fully functional applications:</p>
+
+<div class="feature-grid">
+  <div class="feature-card">
+    <h4>Mobile App</h4>
+    <p>React Native (Expo SDK 54) wallet with multi-chain support, token swaps, WalletConnect, biometric security, and push notifications.</p>
+  </div>
+  <div class="feature-card">
+    <h4>Backend Server</h4>
+    <p>Express.js API server with Redis caching, MongoDB persistence, CoinGecko proxy, and Alchemy webhook-based transaction notifications.</p>
+  </div>
+  <div class="feature-card">
+    <h4>Landing Website</h4>
+    <p>Next.js 16 marketing site with responsive design, early-access waitlist signup, and Firebase integration.</p>
+  </div>
+  <div class="feature-card">
+    <h4>Monorepo</h4>
+    <p>Turborepo-managed workspace with shared Docker infrastructure, unified dev scripts, and parallel builds.</p>
+  </div>
+</div>
+
+<h3>What's Included</h3>
+<ul>
+  <li>Full source code for all three applications</li>
+  <li>Turborepo monorepo configuration with npm workspaces</li>
+  <li>Docker Compose setup for Redis and MongoDB</li>
+  <li>Environment variable templates for all workspaces</li>
+  <li>This documentation</li>
+</ul>
+
+<h3>Tech Stack</h3>
+<table>
+  <tr><th>Component</th><th>Technology</th><th>Version</th></tr>
+  <tr><td>Mobile App</td><td>Expo SDK, React Native, NativeWind</td><td>54, 0.81, v4</td></tr>
+  <tr><td>Backend Server</td><td>Express.js, Redis, MongoDB</td><td>5.x, 7.x, 7.x</td></tr>
+  <tr><td>Website</td><td>Next.js, Tailwind CSS</td><td>16, v4</td></tr>
+  <tr><td>Build System</td><td>Turborepo</td><td>2.x</td></tr>
+  <tr><td>Language</td><td>TypeScript / JavaScript (ES Modules)</td><td>5.9</td></tr>
+</table>
+
+<!-- REQUIREMENTS -->
+<h2 id="requirements">Requirements</h2>
+
+<h3>Software</h3>
+<table>
+  <tr><th>Tool</th><th>Minimum Version</th><th>Purpose</th></tr>
+  <tr><td>Node.js</td><td>20.x</td><td>Runtime for all three apps</td></tr>
+  <tr><td>npm</td><td>10.x</td><td>Package manager (comes with Node.js)</td></tr>
+  <tr><td>Docker Desktop</td><td>Latest</td><td>Redis and MongoDB containers</td></tr>
+  <tr><td>Git</td><td>2.x</td><td>Version control</td></tr>
+</table>
+
+<h3>For Mobile Development</h3>
+<table>
+  <tr><th>Tool</th><th>Purpose</th></tr>
+  <tr><td>Expo Go app (iOS/Android)</td><td>Run the app on a physical device during development</td></tr>
+  <tr><td>Xcode (macOS only)</td><td>iOS simulator and native builds</td></tr>
+  <tr><td>Android Studio</td><td>Android emulator and native builds</td></tr>
+  <tr><td>EAS CLI</td><td>Build and submit to app stores (<code>npm install -g eas-cli</code>)</td></tr>
+</table>
+
+<h3>API Keys (Free Tier)</h3>
+<table>
+  <tr><th>Service</th><th>Required For</th><th>Free Tier</th></tr>
+  <tr><td>Alchemy</td><td>Blockchain data (balances, transactions, gas)</td><td>Yes — 300M compute units/month</td></tr>
+  <tr><td>CoinGecko</td><td>Price data (optional key, works without one)</td><td>Yes — 5 calls/min</td></tr>
+  <tr><td>Firebase</td><td>Waitlist signup on website</td><td>Yes — Spark plan</td></tr>
+  <tr><td>Alchemy Webhooks</td><td>Push notifications (optional)</td><td>Yes — 3 webhooks free</td></tr>
+</table>
+
+<!-- INSTALLATION -->
+<h2 id="installation">Installation</h2>
+
+<div class="alert alert-info">
+  <strong>Estimated time:</strong> 10-15 minutes for full setup including Docker containers.
+</div>
+
+<div class="step">
+  <div class="step-number">1</div>
+  <div class="step-content">
+    <h4>Extract the Package</h4>
+    <p>Unzip the downloaded file and open the <code>pouch-monorepo</code> folder in your terminal:</p>
+    <pre><code>cd pouch-monorepo</code></pre>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-number">2</div>
+  <div class="step-content">
+    <h4>Install Dependencies</h4>
+    <p>Install all workspace dependencies from the root. npm workspaces will handle all three apps:</p>
+    <pre><code>npm install</code></pre>
+    <p>This installs dependencies for the mobile app, server, and website in one command.</p>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-number">3</div>
+  <div class="step-content">
+    <h4>Create Environment Files</h4>
+    <p>Run the setup script to copy <code>.env.example</code> templates into actual <code>.env</code> files:</p>
+    <pre><code>npm run setup</code></pre>
+    <p>This creates:</p>
+    <ul>
+      <li><code>apps/server/.env</code> — Server configuration</li>
+      <li><code>apps/web/.env.local</code> — Website configuration</li>
+      <li><code>apps/mobile/.env</code> — Mobile configuration</li>
+    </ul>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-number">4</div>
+  <div class="step-content">
+    <h4>Configure Environment Variables</h4>
+    <p>Open each <code>.env</code> file and fill in your values. See the <a href="#env-variables">Environment Variables</a> section for a complete reference. At minimum you need:</p>
+    <ul>
+      <li><strong>Server:</strong> <code>MONGODB_URI</code> and <code>REDIS_URL</code> (defaults work with Docker)</li>
+      <li><strong>Website:</strong> <code>FIREBASE_PROJECT_ID</code>, <code>FIREBASE_CLIENT_EMAIL</code>, <code>FIREBASE_PRIVATE_KEY</code></li>
+      <li><strong>Mobile:</strong> Alchemy API key in the app's config files</li>
+    </ul>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-number">5</div>
+  <div class="step-content">
+    <h4>Start Docker Containers</h4>
+    <p>Start Redis and MongoDB using Docker Compose:</p>
+    <pre><code>npm run docker:up</code></pre>
+    <p>Verify they're running:</p>
+    <pre><code>docker ps
+# Should show pouch-redis (port 6379) and pouch-mongodb (port 27017)</code></pre>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-number">6</div>
+  <div class="step-content">
+    <h4>Start All Dev Servers</h4>
+    <p>Launch all three apps simultaneously with Turborepo's interactive TUI:</p>
+    <pre><code>npm run dev</code></pre>
+    <p>This starts:</p>
+    <ul>
+      <li><strong>Mobile:</strong> Expo dev server at <code>http://localhost:8081</code></li>
+      <li><strong>Server:</strong> Express API at <code>http://localhost:3001</code></li>
+      <li><strong>Web:</strong> Next.js at <code>http://localhost:3000</code></li>
+    </ul>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-number">7</div>
+  <div class="step-content">
+    <h4>Run the Mobile App</h4>
+    <p>Open the Expo Go app on your phone and scan the QR code shown in the terminal. For first run, clear the Metro cache:</p>
+    <pre><code>cd apps/mobile && npx expo start --clear</code></pre>
+  </div>
+</div>
+
+<div class="alert alert-success">
+  <strong>Done!</strong> You should now have all three applications running. Visit <code>http://localhost:3001/health</code> to verify the server is connected to Redis and MongoDB.
+</div>
+
+<h3>Running Individual Apps</h3>
+<pre><code># Run only the mobile app
+npm run dev:mobile
+
+# Run only the server
+npm run dev:server
+
+# Run only the website
+npm run dev:web
+
+# Run any Turbo task for a specific workspace
+npx turbo run build --filter=@pouch/web
+npx turbo run lint --filter=@pouch/mobile</code></pre>
+
+<!-- CONFIGURATION -->
+<h2 id="configuration">Configuration</h2>
+
+<h3>Alchemy Setup</h3>
+<p>Alchemy provides blockchain data (token balances, transactions, gas estimation) for the mobile app.</p>
+<ol>
+  <li>Create a free account at <a href="https://www.alchemy.com/" target="_blank">alchemy.com</a></li>
+  <li>Create an app for each network you want to support (Ethereum, Polygon, Arbitrum, Optimism, Base)</li>
+  <li>Copy the API key from your Alchemy dashboard</li>
+  <li>Open <code>apps/mobile/services/blockchain/alchemy-client.ts</code> and set your API key</li>
+</ol>
+
+<h3>Firebase Setup (Website Only)</h3>
+<p>Firebase is used for the email waitlist feature on the landing website.</p>
+<ol>
+  <li>Go to the <a href="https://console.firebase.google.com/" target="_blank">Firebase Console</a> and create a project</li>
+  <li>Enable Firestore Database</li>
+  <li>Go to Project Settings &gt; Service Accounts &gt; Generate New Private Key</li>
+  <li>Copy the values into <code>apps/web/.env.local</code>:
+    <pre><code>FIREBASE_PROJECT_ID=your-project-id
+FIREBASE_CLIENT_EMAIL=firebase-adminsdk-xxxxx@your-project.iam.gserviceaccount.com
+FIREBASE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"</code></pre>
+  </li>
+</ol>
+
+<h3>Push Notifications (Optional)</h3>
+<p>Transaction push notifications require Alchemy webhooks. This is optional — the app works fully without it.</p>
+<ol>
+  <li>In the Alchemy dashboard, go to Webhooks and create an ADDRESS_ACTIVITY webhook</li>
+  <li>Set the webhook URL to your deployed server's <code>/webhooks/alchemy</code> endpoint</li>
+  <li>Copy the webhook ID and signing key into <code>apps/server/.env</code></li>
+</ol>
+
+<!-- FOLDER STRUCTURE -->
+<h2 id="folder-structure">Folder Structure</h2>
+
+<div class="file-tree">
+<span class="folder">pouch-monorepo/</span>
+├── <span class="file">package.json</span>          <span class="comment"># Root: npm workspaces + turbo scripts</span>
+├── <span class="file">turbo.json</span>            <span class="comment"># Turborepo task pipeline config</span>
+├── <span class="file">docker-compose.yml</span>    <span class="comment"># Redis + MongoDB containers</span>
+├── <span class="file">CHANGELOG.md</span>          <span class="comment"># Version history</span>
+├── <span class="folder">scripts/</span>
+│   └── <span class="file">setup.js</span>          <span class="comment"># Copies .env.example → .env files</span>
+│
+├── <span class="folder">apps/mobile/</span>          <span class="comment"># @pouch/mobile — Expo/React Native</span>
+│   ├── <span class="folder">app/</span>              <span class="comment"># File-based routes (Expo Router)</span>
+│   │   ├── <span class="folder">(tabs)/</span>       <span class="comment"># Bottom tab screens</span>
+│   │   ├── <span class="folder">wallet-setup/</span> <span class="comment"># Create / import wallet flow</span>
+│   │   ├── <span class="folder">send/</span>         <span class="comment"># Send transaction flow</span>
+│   │   ├── <span class="folder">swap/</span>         <span class="comment"># Token swap flow</span>
+│   │   └── <span class="folder">walletconnect/</span><span class="comment"># dApp connections</span>
+│   ├── <span class="folder">components/</span>       <span class="comment"># Reusable UI components</span>
+│   ├── <span class="folder">constants/</span>        <span class="comment"># Theme, networks, tokens, API config</span>
+│   ├── <span class="folder">contexts/</span>         <span class="comment"># React contexts (wallet, auth, network)</span>
+│   ├── <span class="folder">hooks/</span>            <span class="comment"># Custom hooks (useTokens, useSwap, etc.)</span>
+│   ├── <span class="folder">services/</span>         <span class="comment"># Business logic (blockchain, swap, auth)</span>
+│   └── <span class="folder">types/</span>            <span class="comment"># TypeScript type definitions</span>
+│
+├── <span class="folder">apps/server/</span>          <span class="comment"># @pouch/server — Express.js backend</span>
+│   └── <span class="folder">src/</span>
+│       ├── <span class="file">index.js</span>      <span class="comment"># Main server entry point</span>
+│       ├── <span class="folder">services/</span>     <span class="comment"># Cache, CoinGecko, MongoDB, push, webhooks</span>
+│       └── <span class="folder">routes/</span>       <span class="comment"># Notification and webhook routes</span>
+│
+├── <span class="folder">apps/web/</span>             <span class="comment"># @pouch/web — Next.js website</span>
+│   ├── <span class="folder">app/</span>              <span class="comment"># Next.js App Router pages</span>
+│   │   ├── <span class="folder">api/whitelist/</span><span class="comment"># Waitlist signup API</span>
+│   │   ├── <span class="folder">privacy/</span>      <span class="comment"># Privacy policy page</span>
+│   │   └── <span class="folder">terms/</span>        <span class="comment"># Terms &amp; conditions page</span>
+│   ├── <span class="folder">components/</span>       <span class="comment"># Header, hero, features, FAQ, etc.</span>
+│   └── <span class="folder">lib/</span>              <span class="comment"># Firebase admin SDK init</span>
+│
+└── <span class="folder">Documentation/</span>        <span class="comment"># This documentation</span>
+</div>
+
+<!-- MOBILE APP -->
+<h2 id="mobile-app">Mobile App</h2>
+<p>The mobile app is a full-featured non-custodial crypto wallet built with Expo SDK 54 and React Native 0.81. It uses file-based routing via Expo Router and NativeWind (Tailwind CSS) for styling.</p>
+
+<h3>Screens</h3>
+<table>
+  <tr><th>Screen</th><th>Route</th><th>Description</th></tr>
+  <tr><td>Home</td><td><code>(tabs)/index</code></td><td>Portfolio overview, token list, quick actions</td></tr>
+  <tr><td>Portfolio</td><td><code>(tabs)/portfolio</code></td><td>Allocation chart, diversification score, analytics</td></tr>
+  <tr><td>Swap</td><td><code>(tabs)/swap</code></td><td>DEX token swap interface</td></tr>
+  <tr><td>Settings</td><td><code>(tabs)/settings</code></td><td>App lock, networks, recovery phrase, notifications</td></tr>
+  <tr><td>Onboarding</td><td><code>onboarding</code></td><td>Welcome slides for first-time users</td></tr>
+  <tr><td>Wallet Setup</td><td><code>wallet-setup/*</code></td><td>Create or import wallet flow with PIN setup</td></tr>
+  <tr><td>Send</td><td><code>send/*</code></td><td>Multi-step send flow (select token &rarr; amount &rarr; confirm &rarr; success)</td></tr>
+  <tr><td>Receive</td><td><code>receive</code></td><td>QR code display for receiving tokens</td></tr>
+  <tr><td>Asset Detail</td><td><code>asset/[id]</code></td><td>Price chart, token info, transaction history</td></tr>
+  <tr><td>Address Book</td><td><code>address-book</code></td><td>Contact management for frequent recipients</td></tr>
+  <tr><td>WalletConnect</td><td><code>walletconnect/*</code></td><td>QR scan and dApp session management</td></tr>
+  <tr><td>Notifications</td><td><code>notifications</code></td><td>Transaction notification history</td></tr>
+  <tr><td>Lock Screen</td><td><code>app-lock</code></td><td>PIN and biometric authentication</td></tr>
+</table>
+
+<h3>Supported Networks</h3>
+<table>
+  <tr><th>Network</th><th>Mainnet</th><th>Testnet</th></tr>
+  <tr><td>Ethereum</td><td>Mainnet</td><td>Sepolia</td></tr>
+  <tr><td>Polygon</td><td>Mainnet</td><td>Amoy</td></tr>
+  <tr><td>Arbitrum</td><td>Mainnet</td><td>Sepolia</td></tr>
+  <tr><td>Optimism</td><td>Mainnet</td><td>Sepolia</td></tr>
+  <tr><td>Base</td><td>Mainnet</td><td>Sepolia</td></tr>
+</table>
+
+<!-- BACKEND SERVER -->
+<h2 id="backend-server">Backend Server</h2>
+<p>The Express.js backend serves as a cache proxy for CoinGecko and handles push notifications via Alchemy webhooks.</p>
+
+<h3>Services</h3>
+<table>
+  <tr><th>Service</th><th>File</th><th>Purpose</th></tr>
+  <tr><td>Cache</td><td><code>services/cache.js</code></td><td>Redis wrapper for caching API responses</td></tr>
+  <tr><td>CoinGecko</td><td><code>services/coingecko.js</code></td><td>Price data, charts, coin search with caching</td></tr>
+  <tr><td>Queue</td><td><code>services/queue.js</code></td><td>Rate limiter for CoinGecko (5 calls/min)</td></tr>
+  <tr><td>MongoDB</td><td><code>services/mongodb.js</code></td><td>Database connection and collection setup</td></tr>
+  <tr><td>Alchemy Webhooks</td><td><code>services/alchemy-webhooks.js</code></td><td>Blockchain address monitoring</td></tr>
+  <tr><td>Expo Push</td><td><code>services/expo-push.js</code></td><td>Push notification delivery</td></tr>
+  <tr><td>Notifications</td><td><code>services/notifications.js</code></td><td>Device registration, notification history</td></tr>
+</table>
+
+<!-- WEB APP -->
+<h2 id="web-app">Web App</h2>
+<p>The Next.js 16 website serves as the marketing landing page for Pouch with an early-access waitlist signup.</p>
+
+<h3>Pages</h3>
+<table>
+  <tr><th>Route</th><th>Description</th></tr>
+  <tr><td><code>/</code></td><td>Landing page with hero, features, FAQ, and waitlist signup</td></tr>
+  <tr><td><code>/privacy</code></td><td>Privacy policy</td></tr>
+  <tr><td><code>/terms</code></td><td>Terms and conditions</td></tr>
+  <tr><td><code>/api/whitelist</code></td><td>POST endpoint for email waitlist signup (Firebase Firestore)</td></tr>
+</table>
+
+<!-- FEATURES -->
+<h2 id="wallet-management">Wallet Management</h2>
+<ul>
+  <li><strong>Create Wallet:</strong> Generate a new BIP39 mnemonic (12/24 words) with HD wallet derivation (BIP44)</li>
+  <li><strong>Import Wallet:</strong> Restore existing wallet from recovery phrase</li>
+  <li><strong>Multiple Accounts:</strong> Derive additional accounts from the same mnemonic</li>
+  <li><strong>Account Switching:</strong> Quick switch between accounts from any screen</li>
+  <li><strong>Secure Storage:</strong> Private keys encrypted with AES-256 and stored in Expo Secure Store</li>
+</ul>
+
+<h2 id="portfolio">Portfolio &amp; Prices</h2>
+<ul>
+  <li><strong>Real-Time Prices:</strong> Live cryptocurrency prices via CoinGecko (cached by the backend server)</li>
+  <li><strong>Price Charts:</strong> Interactive charts with 1D, 7D, 30D, 1Y, and all-time timeframes</li>
+  <li><strong>Portfolio Value:</strong> Total USD portfolio value with 24h change</li>
+  <li><strong>Allocation Chart:</strong> Pie chart visualization of asset distribution</li>
+  <li><strong>Diversification Score:</strong> Portfolio health metric (0-100)</li>
+  <li><strong>Best/Worst Performers:</strong> Highlights top and bottom performing assets</li>
+</ul>
+
+<h2 id="send-receive">Send &amp; Receive</h2>
+<ul>
+  <li><strong>Send Native Tokens:</strong> ETH, MATIC, and other native currencies</li>
+  <li><strong>Send ERC-20 Tokens:</strong> Any supported ERC-20 token</li>
+  <li><strong>Address Book:</strong> Save frequently-used recipients as contacts</li>
+  <li><strong>Gas Estimation:</strong> Real-time gas fees with Standard / Fast / Instant options</li>
+  <li><strong>QR Code Receive:</strong> Generate QR codes for your wallet address</li>
+  <li><strong>Transaction History:</strong> Per-token and overall transaction logs</li>
+</ul>
+
+<h2 id="token-swaps">Token Swaps</h2>
+<ul>
+  <li><strong>DEX Integration:</strong> Uniswap V3 for on-chain token swaps</li>
+  <li><strong>Live Quotes:</strong> Real-time swap quotes with 15-second refresh</li>
+  <li><strong>Slippage Control:</strong> Presets (0.5%, 1%, 3%) and custom slippage tolerance</li>
+  <li><strong>Price Impact:</strong> Visual indicator of trade impact on pool</li>
+  <li><strong>Multi-Network:</strong> Swap on any supported EVM chain with Uniswap deployment</li>
+  <li><strong>Swap History:</strong> Track all past swaps</li>
+</ul>
+
+<h2 id="walletconnect">WalletConnect</h2>
+<ul>
+  <li><strong>WalletConnect v2:</strong> Connect to any dApp via QR code scanning</li>
+  <li><strong>Session Management:</strong> View, manage, and disconnect active sessions</li>
+  <li><strong>Request Signing:</strong> Support for personal_sign, eth_sign, eth_signTypedData_v4, eth_sendTransaction</li>
+  <li><strong>Multiple Sessions:</strong> Connect to multiple dApps simultaneously</li>
+</ul>
+
+<h2 id="notifications">Notifications</h2>
+<ul>
+  <li><strong>Push Notifications:</strong> Real-time alerts for incoming/outgoing transactions</li>
+  <li><strong>Alchemy Webhooks:</strong> Blockchain monitoring for registered wallet addresses</li>
+  <li><strong>Notification History:</strong> Paginated history with read/unread status</li>
+  <li><strong>Multi-Address:</strong> Monitor all accounts in your wallet</li>
+</ul>
+
+<h2 id="security">Security</h2>
+<ul>
+  <li><strong>Non-Custodial:</strong> Private keys never leave the device</li>
+  <li><strong>PIN Protection:</strong> 6-digit PIN with exponential lockout after failed attempts</li>
+  <li><strong>Biometric Auth:</strong> Face ID / Touch ID support</li>
+  <li><strong>Auto-Lock:</strong> Configurable timeout (immediate, 1min, 5min, 15min)</li>
+  <li><strong>Encrypted Storage:</strong> AES-256 encryption for all sensitive data</li>
+  <li><strong>Recovery Phrase:</strong> Biometric-protected recovery phrase viewer</li>
+</ul>
+
+<!-- CUSTOMIZATION -->
+<h2 id="theming">Theming &amp; Styling</h2>
+
+<h3>Mobile App (NativeWind / Tailwind CSS v3)</h3>
+<p>The mobile app uses NativeWind v4 which brings Tailwind CSS to React Native. Modify the theme in two places:</p>
+
+<h4>Colors &amp; Fonts</h4>
+<p>Edit <code>apps/mobile/constants/theme.ts</code> to change the color palette and font families:</p>
+<pre><code>// constants/theme.ts
+export const Colors = {
+  primary: '#B8F25B',
+  background: '#0A0A0A',
+  card: '#141414',
+  // ... modify these values
+};
+
+export const Fonts = {
+  heading: 'Syne_700Bold',
+  body: 'Outfit_400Regular',
+  // ... modify these values
+};</code></pre>
+
+<h4>Tailwind Config</h4>
+<p>Edit <code>apps/mobile/tailwind.config.js</code> to extend or override the default Tailwind theme.</p>
+
+<h3>Website (Tailwind CSS v4)</h3>
+<p>Edit CSS custom properties in <code>apps/web/app/globals.css</code>:</p>
+<pre><code>:root {
+  --wallet-accent: #B8F25B;    /* Primary accent color */
+  --wallet-bg: #FAFAFA;         /* Background */
+  --wallet-text: #1A1A1A;       /* Primary text */
+  /* ... modify these values */
+}</code></pre>
+
+<h2 id="networks">Adding Networks</h2>
+<p>To add a new EVM network, edit <code>apps/mobile/constants/networks.ts</code>:</p>
+<pre><code>// Add a new network to the NETWORKS array
+{
+  id: 'avalanche',
+  name: 'Avalanche',
+  symbol: 'AVAX',
+  chainId: 43114,
+  testChainId: 43113,
+  color: '#E84142',
+  explorerUrl: 'https://snowtrace.io',
+  testExplorerUrl: 'https://testnet.snowtrace.io',
+}</code></pre>
+<p>You will also need to add the corresponding Alchemy network ID or configure a custom RPC endpoint.</p>
+
+<h2 id="api-keys">API Keys</h2>
+<div class="alert alert-warning">
+  <strong>Important:</strong> You must replace the default API keys with your own before deploying to production. The included keys are for development purposes only.
+</div>
+
+<h4>Alchemy API Key</h4>
+<p>Located in <code>apps/mobile/services/blockchain/alchemy-client.ts</code>. Replace the API key with your own from the Alchemy dashboard.</p>
+
+<h4>WalletConnect Project ID</h4>
+<p>Located in <code>apps/mobile/constants/walletconnect.ts</code>. Get a free project ID at <a href="https://cloud.walletconnect.com/" target="_blank">cloud.walletconnect.com</a>.</p>
+
+<!-- DEPLOYMENT -->
+<h2 id="deploy-mobile">Deploy Mobile App</h2>
+
+<h3>Using EAS Build (Recommended)</h3>
+<pre><code># Install EAS CLI globally
+npm install -g eas-cli
+
+# Log in to your Expo account
+eas login
+
+# Configure the project (first time only)
+cd apps/mobile
+eas build:configure
+
+# Build for iOS
+eas build --platform ios
+
+# Build for Android
+eas build --platform android
+
+# Submit to stores
+eas submit --platform ios
+eas submit --platform android</code></pre>
+
+<h3>Local Development Build</h3>
+<pre><code># Generate native projects
+cd apps/mobile
+npx expo prebuild
+
+# Run on iOS simulator
+npx expo run:ios
+
+# Run on Android emulator
+npx expo run:android</code></pre>
+
+<h2 id="deploy-server">Deploy Server</h2>
+<p>The server can be deployed to any Node.js hosting platform. It includes a <code>railway.toml</code> for Railway deployment.</p>
+
+<h3>Railway (One-Click)</h3>
+<ol>
+  <li>Push the <code>apps/server</code> directory to a Git repository</li>
+  <li>Connect the repo in the Railway dashboard</li>
+  <li>Add environment variables in Railway's settings</li>
+  <li>Deploy — Railway will auto-detect the Node.js project</li>
+</ol>
+
+<h3>Generic Deployment</h3>
+<pre><code># Build and start
+cd apps/server
+npm start
+
+# The server listens on PORT (default: 3001)
+# Ensure REDIS_URL and MONGODB_URI point to production instances</code></pre>
+
+<div class="alert alert-info">
+  <strong>Production Redis &amp; MongoDB:</strong> Use managed services like Redis Cloud, MongoDB Atlas, or Railway add-ons instead of Docker for production.
+</div>
+
+<h2 id="deploy-web">Deploy Website</h2>
+<h3>Vercel (Recommended)</h3>
+<ol>
+  <li>Push the monorepo to GitHub</li>
+  <li>Import the repository in Vercel</li>
+  <li>Set the root directory to <code>apps/web</code></li>
+  <li>Add environment variables (<code>FIREBASE_PROJECT_ID</code>, etc.)</li>
+  <li>Deploy</li>
+</ol>
+
+<h3>Self-Hosted</h3>
+<pre><code>cd apps/web
+npm run build
+npm start
+# Serves on port 3000</code></pre>
+
+<!-- API ENDPOINTS -->
+<h2 id="api-endpoints">API Endpoints</h2>
+
+<h3>Price &amp; Market Data</h3>
+<table>
+  <tr><th>Method</th><th>Endpoint</th><th>Description</th></tr>
+  <tr><td><span class="badge badge-green">GET</span></td><td><code>/health</code></td><td>Server health check (Redis, queue, webhook status)</td></tr>
+  <tr><td><span class="badge badge-green">GET</span></td><td><code>/prices?ids=bitcoin,ethereum</code></td><td>Current prices with 24h change, volume, market cap</td></tr>
+  <tr><td><span class="badge badge-green">GET</span></td><td><code>/chart/:coinId?days=7</code></td><td>Historical price chart data</td></tr>
+  <tr><td><span class="badge badge-green">GET</span></td><td><code>/coin/:coinId</code></td><td>Detailed coin information</td></tr>
+  <tr><td><span class="badge badge-green">GET</span></td><td><code>/coins/list</code></td><td>All coins with contract addresses</td></tr>
+  <tr><td><span class="badge badge-green">GET</span></td><td><code>/search?q=bitcoin</code></td><td>Search coins by name/symbol</td></tr>
+  <tr><td><span class="badge badge-green">GET</span></td><td><code>/contract/:platform/:address</code></td><td>Token by contract address</td></tr>
+  <tr><td><span class="badge badge-blue">POST</span></td><td><code>/contract/:platform</code></td><td>Batch token lookup</td></tr>
+</table>
+
+<h3>Notifications</h3>
+<table>
+  <tr><th>Method</th><th>Endpoint</th><th>Description</th></tr>
+  <tr><td><span class="badge badge-blue">POST</span></td><td><code>/notifications/register</code></td><td>Register device for push notifications</td></tr>
+  <tr><td><span class="badge badge-blue">POST</span></td><td><code>/notifications/unregister</code></td><td>Unregister device</td></tr>
+  <tr><td><span class="badge badge-yellow">PATCH</span></td><td><code>/notifications/addresses</code></td><td>Add/remove monitored addresses</td></tr>
+  <tr><td><span class="badge badge-green">GET</span></td><td><code>/notifications/device/:deviceId</code></td><td>Device registration status</td></tr>
+  <tr><td><span class="badge badge-green">GET</span></td><td><code>/notifications/history/:deviceId</code></td><td>Paginated notification history</td></tr>
+  <tr><td><span class="badge badge-yellow">PATCH</span></td><td><code>/notifications/read</code></td><td>Mark notifications as read</td></tr>
+  <tr><td><span class="badge badge-green">GET</span></td><td><code>/notifications/unread-count/:deviceId</code></td><td>Unread notification count</td></tr>
+</table>
+
+<h3>Webhooks</h3>
+<table>
+  <tr><th>Method</th><th>Endpoint</th><th>Description</th></tr>
+  <tr><td><span class="badge badge-blue">POST</span></td><td><code>/webhooks/alchemy</code></td><td>Alchemy ADDRESS_ACTIVITY webhook receiver</td></tr>
+  <tr><td><span class="badge badge-green">GET</span></td><td><code>/webhooks/test</code></td><td>Webhook connectivity test</td></tr>
+  <tr><td><span class="badge badge-blue">POST</span></td><td><code>/webhooks/test-notification</code></td><td>Send a test push notification</td></tr>
+</table>
+
+<!-- ENV VARIABLES -->
+<h2 id="env-variables">Environment Variables</h2>
+
+<h3>Server (<code>apps/server/.env</code>)</h3>
+<table>
+  <tr><th>Variable</th><th>Default</th><th>Description</th></tr>
+  <tr><td><code>PORT</code></td><td>3001</td><td>Server port</td></tr>
+  <tr><td><code>REDIS_URL</code></td><td>redis://localhost:6379</td><td>Redis connection string</td></tr>
+  <tr><td><code>MONGODB_URI</code></td><td>mongodb://localhost:27017/pouch</td><td>MongoDB connection string</td></tr>
+  <tr><td><code>COINGECKO_API_KEY</code></td><td><em>(empty)</em></td><td>Optional CoinGecko Pro API key</td></tr>
+  <tr><td><code>CACHE_TTL_PRICES</code></td><td>300</td><td>Price cache TTL in seconds</td></tr>
+  <tr><td><code>CACHE_TTL_CHART_1D</code></td><td>300</td><td>1-day chart cache TTL</td></tr>
+  <tr><td><code>CACHE_TTL_CHART_1W</code></td><td>900</td><td>1-week chart cache TTL</td></tr>
+  <tr><td><code>CACHE_TTL_CHART_1M</code></td><td>3600</td><td>1-month chart cache TTL</td></tr>
+  <tr><td><code>CACHE_TTL_CHART_1Y</code></td><td>86400</td><td>1-year chart cache TTL</td></tr>
+  <tr><td><code>COINGECKO_CALLS_PER_MINUTE</code></td><td>5</td><td>Rate limit for CoinGecko API</td></tr>
+  <tr><td><code>ALCHEMY_AUTH_TOKEN</code></td><td><em>(empty)</em></td><td>Alchemy account auth token (for webhooks)</td></tr>
+  <tr><td><code>ALCHEMY_WEBHOOK_1_ID</code></td><td><em>(empty)</em></td><td>First webhook ID</td></tr>
+  <tr><td><code>ALCHEMY_WEBHOOK_1_SIGNING_KEY</code></td><td><em>(empty)</em></td><td>First webhook HMAC signing key</td></tr>
+  <tr><td><code>ALCHEMY_WEBHOOK_1_NETWORK</code></td><td><em>(empty)</em></td><td>First webhook network</td></tr>
+  <tr><td><code>EXPO_ACCESS_TOKEN</code></td><td><em>(empty)</em></td><td>Optional Expo push token for enhanced rate limits</td></tr>
+</table>
+
+<h3>Website (<code>apps/web/.env.local</code>)</h3>
+<table>
+  <tr><th>Variable</th><th>Description</th></tr>
+  <tr><td><code>FIREBASE_PROJECT_ID</code></td><td>Firebase project identifier</td></tr>
+  <tr><td><code>FIREBASE_CLIENT_EMAIL</code></td><td>Firebase service account email</td></tr>
+  <tr><td><code>FIREBASE_PRIVATE_KEY</code></td><td>Firebase service account private key</td></tr>
+</table>
+
+<h3>Mobile (<code>apps/mobile/.env</code>)</h3>
+<table>
+  <tr><th>Variable</th><th>Default</th><th>Description</th></tr>
+  <tr><td><code>EXPO_PUBLIC_CACHE_SERVER_URL</code></td><td>http://localhost:3001</td><td>Cache server URL (auto-detects dev/prod)</td></tr>
+</table>
+
+<!-- THIRD PARTY -->
+<h2 id="third-party">Third-Party Credits</h2>
+
+<h3>Mobile App</h3>
+<table>
+  <tr><th>Package</th><th>License</th><th>Purpose</th></tr>
+  <tr><td>Expo SDK</td><td>MIT</td><td>React Native framework</td></tr>
+  <tr><td>React Native</td><td>MIT</td><td>Mobile UI framework</td></tr>
+  <tr><td>NativeWind</td><td>MIT</td><td>Tailwind CSS for React Native</td></tr>
+  <tr><td>ethers.js</td><td>MIT</td><td>Ethereum library for wallet operations</td></tr>
+  <tr><td>@scure/bip39</td><td>MIT</td><td>Mnemonic generation</td></tr>
+  <tr><td>WalletConnect</td><td>Apache 2.0</td><td>dApp connection protocol</td></tr>
+  <tr><td>Alchemy SDK</td><td>MIT</td><td>Blockchain data provider</td></tr>
+  <tr><td>React Native Reanimated</td><td>MIT</td><td>Animations</td></tr>
+  <tr><td>React Native Skia</td><td>MIT</td><td>2D rendering (charts)</td></tr>
+  <tr><td>Expo Router</td><td>MIT</td><td>File-based navigation</td></tr>
+</table>
+
+<h3>Backend Server</h3>
+<table>
+  <tr><th>Package</th><th>License</th><th>Purpose</th></tr>
+  <tr><td>Express.js</td><td>MIT</td><td>HTTP server framework</td></tr>
+  <tr><td>Redis (ioredis)</td><td>MIT</td><td>Cache client</td></tr>
+  <tr><td>MongoDB Driver</td><td>Apache 2.0</td><td>Database client</td></tr>
+  <tr><td>Axios</td><td>MIT</td><td>HTTP client</td></tr>
+  <tr><td>dotenv</td><td>BSD-2</td><td>Environment variable loading</td></tr>
+  <tr><td>cors</td><td>MIT</td><td>CORS middleware</td></tr>
+</table>
+
+<h3>Website</h3>
+<table>
+  <tr><th>Package</th><th>License</th><th>Purpose</th></tr>
+  <tr><td>Next.js</td><td>MIT</td><td>React framework</td></tr>
+  <tr><td>Tailwind CSS</td><td>MIT</td><td>Utility-first CSS</td></tr>
+  <tr><td>Firebase Admin</td><td>Apache 2.0</td><td>Firestore database</td></tr>
+  <tr><td>React Icons</td><td>MIT</td><td>Icon library</td></tr>
+</table>
+
+<h3>Fonts</h3>
+<table>
+  <tr><th>Font</th><th>License</th><th>Used In</th></tr>
+  <tr><td>Outfit</td><td>OFL</td><td>Mobile app body text, Website</td></tr>
+  <tr><td>Syne</td><td>OFL</td><td>Mobile app headings</td></tr>
+  <tr><td>Caveat</td><td>OFL</td><td>Mobile app accents</td></tr>
+  <tr><td>DM Serif Display</td><td>OFL</td><td>Website headings</td></tr>
+  <tr><td>Space Mono</td><td>OFL</td><td>Website monospace text</td></tr>
+</table>
+
+<!-- CHANGELOG -->
+<h2 id="changelog">Changelog</h2>
+
+<h3>v1.0.0 <span class="badge badge-green">Initial Release</span></h3>
+<p><strong>Release Date:</strong> February 2026</p>
+<ul>
+  <li>Non-custodial wallet with BIP39/BIP44 HD wallet support</li>
+  <li>Multi-chain support (Ethereum, Polygon, Arbitrum, Optimism, Base)</li>
+  <li>ERC-20 token detection and management</li>
+  <li>Token swaps via Uniswap V3 integration</li>
+  <li>WalletConnect v2 for dApp connections</li>
+  <li>PIN and biometric authentication</li>
+  <li>Push notifications for transactions via Alchemy webhooks</li>
+  <li>Portfolio analytics with allocation charts</li>
+  <li>Real-time price data with CoinGecko caching</li>
+  <li>Address book / contacts management</li>
+  <li>Next.js marketing website with waitlist signup</li>
+  <li>Express.js backend with Redis caching and MongoDB</li>
+  <li>Turborepo monorepo with unified dev workflow</li>
+</ul>
+
+<!-- SUPPORT -->
+<h2 id="support">Support</h2>
+
+<h3>What's Included</h3>
+<ul>
+  <li>6 months of support from purchase date (extendable)</li>
+  <li>Bug fixes and troubleshooting</li>
+  <li>Help with included features and configuration</li>
+  <li>Guidance on deployment and environment setup</li>
+</ul>
+
+<h3>What's Not Included</h3>
+<ul>
+  <li>Custom feature development</li>
+  <li>Third-party plugin integration</li>
+  <li>Design customization beyond the included theme</li>
+</ul>
+
+<h3>How to Get Support</h3>
+<p>Use the <strong>Comments</strong> section on the CodeCanyon item page, or contact us through our Envato profile. We typically respond within 24-48 hours on business days.</p>
+
+<h3>Before Contacting Support</h3>
+<ol>
+  <li>Read this documentation thoroughly</li>
+  <li>Make sure you're using the correct Node.js version (20+)</li>
+  <li>Check that Docker containers are running (<code>docker ps</code>)</li>
+  <li>Verify your environment variables are set correctly</li>
+  <li>Check the server health endpoint: <code>http://localhost:3001/health</code></li>
+</ol>
+
+<hr style="margin: 48px 0; border: none; border-top: 1px solid var(--border);">
+<p style="text-align: center; color: var(--text-muted); font-size: 13px;">
+  Pouch v1.0 &mdash; Built by Mithium &mdash; &copy; 2026 All Rights Reserved
+</p>
+
+</div><!-- /.main -->
+</body>
+</html>
