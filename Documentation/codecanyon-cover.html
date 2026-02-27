@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pouch — CodeCanyon Cover</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    min-width: 2340px;
+    min-height: 1560px;
+  }
+
+  body {
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  .cover {
+    width: 2340px;
+    height: 1560px;
+    background: #0A0A0A;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-shrink: 0;
+  }
+
+  /* ── Subtle background effects ── */
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 22%;
+    width: 900px;
+    height: 900px;
+    background: radial-gradient(circle, rgba(184, 242, 91, 0.08) 0%, transparent 70%);
+    transform: translate(50%, -50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -200px;
+    left: -200px;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(184, 242, 91, 0.04) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── Grid noise overlay ── */
+  .noise {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── Left column ── */
+  .left {
+    width: 42%;
+    padding: 120px 80px 100px 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .logo-row {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 32px;
+  }
+
+  .logo-icon {
+    width: 72px;
+    height: 72px;
+    background: #B8F25B;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 38px;
+    font-weight: 900;
+    color: #0A0A0A;
+    letter-spacing: -1px;
+  }
+
+  .title {
+    font-size: 96px;
+    font-weight: 900;
+    color: #FFFFFF;
+    letter-spacing: -3px;
+    line-height: 1;
+  }
+
+  .tagline {
+    font-size: 36px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.35;
+    margin-bottom: 48px;
+    letter-spacing: -0.5px;
+  }
+
+  .tagline span {
+    color: #B8F25B;
+  }
+
+  /* ── Feature pills ── */
+  .pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+
+  .pill {
+    padding: 12px 24px;
+    background: rgba(184, 242, 91, 0.08);
+    border: 1.5px solid rgba(184, 242, 91, 0.25);
+    border-radius: 100px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #B8F25B;
+    white-space: nowrap;
+    letter-spacing: -0.2px;
+  }
+
+  /* ── Tech stack row (bottom-left corner) ── */
+  .tech-stack {
+    position: absolute;
+    bottom: 40px;
+    left: 120px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .tech-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 19px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.55);
+    letter-spacing: -0.2px;
+  }
+
+  .tech-item img {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+  }
+
+  .tech-sep {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.2);
+  }
+
+  /* ── Apps included badge ── */
+  .apps-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 32px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1.5px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    align-self: flex-start;
+  }
+
+  .apps-badge-number {
+    font-size: 32px;
+    font-weight: 900;
+    color: #B8F25B;
+    line-height: 1;
+  }
+
+  .apps-badge-text {
+    font-size: 20px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.3;
+  }
+
+  .apps-badge-sub {
+    font-size: 16px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  /* ── Right column — phone showcase ── */
+  .right {
+    width: 58%;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .phones {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .phone {
+    position: absolute;
+    border-radius: 40px;
+    overflow: hidden;
+    box-shadow:
+      0 8px 40px rgba(0, 0, 0, 0.5),
+      0 2px 10px rgba(0, 0, 0, 0.3),
+      inset 0 0 0 2px rgba(255, 255, 255, 0.08);
+    background: #111;
+  }
+
+  .phone img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Center phone — hero, largest */
+  .phone-center {
+    width: 420px;
+    height: 910px;
+    z-index: 3;
+    transform: translateY(-20px);
+    box-shadow:
+      0 20px 80px rgba(184, 242, 91, 0.12),
+      0 8px 40px rgba(0, 0, 0, 0.6),
+      inset 0 0 0 2px rgba(255, 255, 255, 0.1);
+  }
+
+  /* Left phone — behind, rotated */
+  .phone-left {
+    width: 370px;
+    height: 802px;
+    z-index: 2;
+    transform: translateX(-280px) translateY(10px) rotate(-6deg);
+  }
+
+  /* Right phone — behind, rotated */
+  .phone-right {
+    width: 370px;
+    height: 802px;
+    z-index: 2;
+    transform: translateX(280px) translateY(10px) rotate(6deg);
+  }
+
+  /* ── Bottom edge accent line ── */
+  .bottom-accent {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #B8F25B, transparent);
+    z-index: 10;
+  }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="noise"></div>
+
+  <!-- Left column: Branding & copy -->
+  <div class="left">
+    <div class="logo-row">
+      <div class="logo-icon">P</div>
+      <div class="title">Pouch</div>
+    </div>
+
+    <div class="tagline">
+      Complete <span>Crypto Wallet</span><br>Ecosystem
+    </div>
+
+    <div class="pills">
+      <div class="pill">Non-Custodial</div>
+      <div class="pill">5 EVM Chains</div>
+      <div class="pill">Uniswap V3 Swaps</div>
+      <div class="pill">WalletConnect</div>
+      <div class="pill">Push Notifications</div>
+    </div>
+
+    <div class="apps-badge">
+      <div class="apps-badge-number">3</div>
+      <div>
+        <div class="apps-badge-text">Apps Included</div>
+        <div class="apps-badge-sub">Mobile + Backend + Website</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right column: Phone screenshots -->
+  <div class="right">
+    <div class="phones">
+      <div class="phone phone-left">
+        <img src="../apps/web/public/screenshots/swap.png" alt="Swap Screen">
+      </div>
+      <div class="phone phone-center">
+        <img src="../apps/web/public/screenshots/dashboard.png" alt="Dashboard Screen">
+      </div>
+      <div class="phone phone-right">
+        <img src="../apps/web/public/screenshots/wallet-connect.png" alt="WalletConnect Screen">
+      </div>
+    </div>
+  </div>
+
+  <!-- Tech stack — bottom-left corner -->
+  <div class="tech-stack">
+    <span class="tech-item"><img src="logos/expo.svg" alt="Expo">Expo</span><span class="tech-sep">&middot;</span>
+    <span class="tech-item"><img src="logos/react.svg" alt="React Native">React Native</span><span class="tech-sep">&middot;</span>
+    <span class="tech-item"><img src="logos/nextjs.svg" alt="Next.js">Next.js</span><span class="tech-sep">&middot;</span>
+    <span class="tech-item"><img src="logos/express.svg" alt="Express">Express</span><span class="tech-sep">&middot;</span>
+    <span class="tech-item"><img src="logos/redis.svg" alt="Redis">Redis</span><span class="tech-sep">&middot;</span>
+    <span class="tech-item"><img src="logos/mongodb.svg" alt="MongoDB">MongoDB</span>
+  </div>
+
+  <div class="bottom-accent"></div>
+</div>
+
+</body>
+</html>
