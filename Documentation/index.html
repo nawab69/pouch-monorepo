@@ -702,14 +702,30 @@ export const Fonts = {
 
 <h2 id="api-keys">API Keys</h2>
 <div class="alert alert-warning">
-  <strong>Important:</strong> You must replace the default API keys with your own before deploying to production. The included keys are for development purposes only.
+  <strong>Important — Read Before Deploying:</strong> The app ships with demo API keys so it works out of the box. These keys have <strong>limited quota</strong> and are shared across all buyers. You <strong>must</strong> replace them with your own keys before deploying to production or publishing to app stores. Using the demo keys in production will result in rate limiting and service disruptions.
 </div>
 
 <h4>Alchemy API Key</h4>
-<p>Located in <code>apps/mobile/services/blockchain/alchemy-client.ts</code>. Replace the API key with your own from the Alchemy dashboard.</p>
+<p>Used for blockchain data (token balances, transactions, gas estimation). The demo key is in <code>apps/mobile/constants/networks.ts</code>.</p>
+<ol>
+  <li>Create a free account at <a href="https://www.alchemy.com/" target="_blank">alchemy.com</a> (300M compute units/month free)</li>
+  <li>Create an app in the Alchemy dashboard</li>
+  <li>Copy your API key and replace the value in <code>constants/networks.ts</code>:
+    <pre><code>// apps/mobile/constants/networks.ts
+export const ALCHEMY_API_KEY = 'your_own_alchemy_key_here';</code></pre>
+  </li>
+</ol>
 
 <h4>WalletConnect Project ID</h4>
-<p>Located in <code>apps/mobile/constants/walletconnect.ts</code>. Get a free project ID at <a href="https://cloud.walletconnect.com/" target="_blank">cloud.walletconnect.com</a>.</p>
+<p>Used for dApp connections via WalletConnect. The demo ID is in <code>apps/mobile/constants/walletconnect.ts</code>.</p>
+<ol>
+  <li>Create a free account at <a href="https://cloud.reown.com/" target="_blank">cloud.reown.com</a></li>
+  <li>Create a new project and copy the Project ID</li>
+  <li>Replace the value in <code>constants/walletconnect.ts</code>:
+    <pre><code>// apps/mobile/constants/walletconnect.ts
+export const WALLETCONNECT_PROJECT_ID = 'your_own_project_id_here';</code></pre>
+  </li>
+</ol>
 
 <!-- DEPLOYMENT -->
 <h2 id="deploy-mobile">Deploy Mobile App</h2>

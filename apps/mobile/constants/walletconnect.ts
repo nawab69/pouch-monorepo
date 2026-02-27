@@ -1,8 +1,9 @@
 // WalletConnect / Reown configuration
 // Get your Project ID from https://cloud.reown.com
 
-// Replace with your Project ID from https://cloud.reown.com
-export const WALLETCONNECT_PROJECT_ID = 'YOUR_WALLETCONNECT_PROJECT_ID';
+// Replace with your own Project ID from https://cloud.reown.com
+// The included ID is for demo purposes only
+export const WALLETCONNECT_PROJECT_ID = 'f8151b510995ce6abcbe7d947058352f';
 
 // Wallet metadata shown to dApps when connecting
 export const WALLET_METADATA = {
