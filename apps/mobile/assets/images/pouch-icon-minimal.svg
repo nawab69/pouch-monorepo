@@ -1,0 +1,132 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradient for accent glow -->
+    <linearGradient id="accentGrad" x1="512" y1="200" x2="512" y2="800" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#CCFF66"/>
+      <stop offset="100%" stop-color="#B8F25B"/>
+    </linearGradient>
+
+    <!-- Glow filter -->
+    <filter id="glowEffect" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Soft shadow -->
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="20" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- Background with rounded corners -->
+  <rect width="1024" height="1024" rx="224" fill="#0D1411"/>
+
+  <!-- Pouch body - simplified bag shape -->
+  <path
+    d="M280 360
+       C280 320, 340 280, 420 280
+       L604 280
+       C684 280, 744 320, 744 360
+       L744 400
+       L784 440
+       C840 500, 860 580, 860 660
+       L860 680
+       C860 780, 780 860, 680 860
+       L344 860
+       C244 860, 164 780, 164 680
+       L164 660
+       C164 580, 184 500, 240 440
+       L280 400
+       Z"
+    fill="#2E3B35"
+    filter="url(#shadow)"
+  />
+
+  <!-- Pouch inner shadow/depth -->
+  <path
+    d="M300 380
+       C300 350, 350 320, 420 320
+       L604 320
+       C674 320, 724 350, 724 380
+       L724 410
+       L760 446
+       C810 500, 828 570, 828 640
+       L828 660
+       C828 746, 760 820, 670 820
+       L354 820
+       C264 820, 196 746, 196 660
+       L196 640
+       C196 570, 214 500, 264 446
+       L300 410
+       Z"
+    fill="#384A42"
+  />
+
+  <!-- Pouch opening - dark ellipse -->
+  <ellipse
+    cx="512"
+    cy="350"
+    rx="180"
+    ry="50"
+    fill="#0D1411"
+    stroke="#3D4F47"
+    stroke-width="3"
+  />
+
+  <!-- Drawstring - curved line across top -->
+  <path
+    d="M320 330
+       Q400 380, 512 380
+       Q624 380, 704 330"
+    fill="none"
+    stroke="url(#accentGrad)"
+    stroke-width="18"
+    stroke-linecap="round"
+    filter="url(#glowEffect)"
+  />
+
+  <!-- Drawstring ends - left -->
+  <path
+    d="M320 330
+       Q260 360, 240 420
+       L220 500"
+    fill="none"
+    stroke="url(#accentGrad)"
+    stroke-width="16"
+    stroke-linecap="round"
+    filter="url(#glowEffect)"
+  />
+
+  <!-- Drawstring ends - right -->
+  <path
+    d="M704 330
+       Q764 360, 784 420
+       L804 500"
+    fill="none"
+    stroke="url(#accentGrad)"
+    stroke-width="16"
+    stroke-linecap="round"
+    filter="url(#glowEffect)"
+  />
+
+  <!-- Drawstring ball - left -->
+  <circle cx="212" cy="520" r="36" fill="#B8F25B" filter="url(#glowEffect)"/>
+  <circle cx="212" cy="520" r="20" fill="#CCFF66"/>
+
+  <!-- Drawstring ball - right -->
+  <circle cx="812" cy="520" r="36" fill="#B8F25B" filter="url(#glowEffect)"/>
+  <circle cx="812" cy="520" r="20" fill="#CCFF66"/>
+
+  <!-- Center crypto/coin symbol -->
+  <g transform="translate(512, 640)">
+    <!-- Coin circle -->
+    <circle cx="0" cy="0" r="110" fill="#0D1411" stroke="#B8F25B" stroke-width="7"/>
+
+    <!-- Inner ring -->
+    <circle cx="0" cy="0" r="85" fill="none" stroke="#B8F25B" stroke-width="4" opacity="0.6"/>
+
+  </g>
+</svg>

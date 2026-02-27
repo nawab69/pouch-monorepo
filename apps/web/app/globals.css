@@ -1,0 +1,172 @@
+@import "tailwindcss";
+
+:root {
+  --background: #FAFAFA;
+  --foreground: #1A1A1A;
+  --wallet-bg: #FAFAFA;
+  --wallet-card: #FFFFFF;
+  --wallet-card-light: #F5F5F5;
+  --wallet-accent: #B8F25B;
+  --wallet-accent-dark: #9ED94A;
+  --wallet-text: #1A1A1A;
+  --wallet-text-secondary: #6B7280;
+  --wallet-text-muted: #9CA3AF;
+  --wallet-positive: #22C55E;
+  --wallet-negative: #EF4444;
+  --wallet-border: #E5E7EB;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-wallet-bg: var(--wallet-bg);
+  --color-wallet-card: var(--wallet-card);
+  --color-wallet-card-light: var(--wallet-card-light);
+  --color-wallet-accent: var(--wallet-accent);
+  --color-wallet-accent-dark: var(--wallet-accent-dark);
+  --color-wallet-text: var(--wallet-text);
+  --color-wallet-text-secondary: var(--wallet-text-secondary);
+  --color-wallet-text-muted: var(--wallet-text-muted);
+  --color-wallet-positive: var(--wallet-positive);
+  --color-wallet-negative: var(--wallet-negative);
+  --color-wallet-border: var(--wallet-border);
+  --font-sans: var(--font-outfit);
+  --font-display: var(--font-dm-serif);
+  --font-mono: var(--font-space-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Phone mockup */
+.phone-frame {
+  position: relative;
+  background: #ffffff;
+  border-radius: 28px;
+  padding: 4px;
+  box-shadow: 0 0 0 1px #d1d5db,
+              0 8px 24px -8px rgba(0, 0, 0, 0.12);
+}
+
+.phone-screen {
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+/* Pill label */
+.pill-label {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 18px;
+  border: 1px solid var(--wallet-border);
+  border-radius: 9999px;
+  font-size: 0.8125rem;
+  font-family: var(--font-mono);
+  color: var(--wallet-text-secondary);
+  letter-spacing: 0.02em;
+}
+
+/* FAQ accordion */
+.faq-item {
+  border-bottom: 1px solid var(--wallet-border);
+}
+
+.faq-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 20px 0;
+  text-align: left;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  color: var(--wallet-text);
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: var(--font-mono);
+}
+
+.faq-toggle:hover {
+  color: var(--wallet-accent-dark);
+}
+
+.faq-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: var(--wallet-text-muted);
+  transition: transform 0.2s ease;
+}
+
+.faq-content {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.faq-content.open {
+  max-height: 300px;
+  padding-bottom: 20px;
+}
+
+.faq-content p {
+  font-family: var(--font-mono);
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--wallet-text-secondary);
+}
+
+/* Fade in animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.animation-delay-100 { animation-delay: 0.1s; }
+.animation-delay-200 { animation-delay: 0.2s; }
+.animation-delay-300 { animation-delay: 0.3s; }
+.animation-delay-400 { animation-delay: 0.4s; }
+.animation-delay-500 { animation-delay: 0.5s; }
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Feature card hover */
+.feature-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.1);
+}
+
+/* Rotate animation for learn-more circle */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}

@@ -1,0 +1,80 @@
+<svg width="288" height="288" viewBox="0 0 288 288" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Monochrome icon for Android 13+ themed icons -->
+  <!-- Use only white (#FFFFFF) - system will apply user's theme color -->
+
+  <!-- Pouch body silhouette -->
+  <path
+    d="M78 102
+       C78 90, 98 78, 118 78
+       L170 78
+       C190 78, 210 90, 210 102
+       L210 112
+       L220 122
+       C236 140, 244 162, 244 186
+       L244 192
+       C244 220, 222 242, 194 242
+       L94 242
+       C66 242, 44 220, 44 192
+       L44 186
+       C44 162, 52 140, 68 122
+       L78 112
+       Z"
+    fill="#FFFFFF"
+  />
+
+  <!-- Pouch opening cutout -->
+  <ellipse cx="144" cy="98" rx="50" ry="14" fill="#000000"/>
+
+  <!-- Drawstring curve -->
+  <path
+    d="M90 94
+       Q112 106, 144 106
+       Q176 106, 198 94"
+    fill="none"
+    stroke="#000000"
+    stroke-width="5"
+    stroke-linecap="round"
+  />
+
+  <!-- Drawstring left -->
+  <path
+    d="M90 94
+       Q72 102, 66 118
+       L60 142"
+    fill="none"
+    stroke="#FFFFFF"
+    stroke-width="4"
+    stroke-linecap="round"
+  />
+
+  <!-- Drawstring right -->
+  <path
+    d="M198 94
+       Q216 102, 222 118
+       L228 142"
+    fill="none"
+    stroke="#FFFFFF"
+    stroke-width="4"
+    stroke-linecap="round"
+  />
+
+  <!-- Drawstring ball left -->
+  <circle cx="58" cy="148" r="10" fill="#FFFFFF"/>
+
+  <!-- Drawstring ball right -->
+  <circle cx="230" cy="148" r="10" fill="#FFFFFF"/>
+
+  <!-- Center coin cutout -->
+  <circle cx="144" cy="180" r="32" fill="#000000"/>
+
+  <!-- P letter in coin -->
+  <text
+    x="144"
+    y="192"
+    text-anchor="middle"
+    font-family="system-ui, -apple-system, sans-serif"
+    font-size="42"
+    font-weight="700"
+    fill="#FFFFFF"
+  >P</text>
+</svg>

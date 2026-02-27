@@ -1,0 +1,119 @@
+<svg width="288" height="288" viewBox="0 0 288 288" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Android adaptive icons need 108dp safe zone centered in 288dp canvas -->
+  <!-- Safe zone: 90dp to 198dp (center 144dp with 54dp margin each side) -->
+
+  <defs>
+    <linearGradient id="accentGrad" x1="144" y1="60" x2="144" y2="228" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#B8F25B"/>
+      <stop offset="100%" stop-color="#9ED94A"/>
+    </linearGradient>
+
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Pouch body -->
+  <path
+    d="M78 102
+       C78 90, 98 78, 118 78
+       L170 78
+       C190 78, 210 90, 210 102
+       L210 112
+       L220 122
+       C236 140, 244 162, 244 186
+       L244 192
+       C244 220, 222 242, 194 242
+       L94 242
+       C66 242, 44 220, 44 192
+       L44 186
+       C44 162, 52 140, 68 122
+       L78 112
+       Z"
+    fill="#1A1F1D"
+  />
+
+  <!-- Pouch inner -->
+  <path
+    d="M84 106
+       C84 96, 100 86, 118 86
+       L170 86
+       C188 86, 204 96, 204 106
+       L204 114
+       L212 122
+       C226 138, 234 158, 234 180
+       L234 186
+       C234 210, 214 232, 190 232
+       L98 232
+       C74 232, 54 210, 54 186
+       L54 180
+       C54 158, 62 138, 76 122
+       L84 114
+       Z"
+    fill="#232A27"
+  />
+
+  <!-- Pouch opening -->
+  <ellipse cx="144" cy="98" rx="50" ry="14" fill="#0D1411"/>
+
+  <!-- Drawstring curve -->
+  <path
+    d="M90 94
+       Q112 106, 144 106
+       Q176 106, 198 94"
+    fill="none"
+    stroke="url(#accentGrad)"
+    stroke-width="5"
+    stroke-linecap="round"
+    filter="url(#glow)"
+  />
+
+  <!-- Drawstring left -->
+  <path
+    d="M90 94
+       Q72 102, 66 118
+       L60 142"
+    fill="none"
+    stroke="url(#accentGrad)"
+    stroke-width="4"
+    stroke-linecap="round"
+    filter="url(#glow)"
+  />
+
+  <!-- Drawstring right -->
+  <path
+    d="M198 94
+       Q216 102, 222 118
+       L228 142"
+    fill="none"
+    stroke="url(#accentGrad)"
+    stroke-width="4"
+    stroke-linecap="round"
+    filter="url(#glow)"
+  />
+
+  <!-- Drawstring ball left -->
+  <circle cx="58" cy="148" r="10" fill="#B8F25B" filter="url(#glow)"/>
+
+  <!-- Drawstring ball right -->
+  <circle cx="230" cy="148" r="10" fill="#B8F25B" filter="url(#glow)"/>
+
+  <!-- Center coin -->
+  <g transform="translate(144, 180)">
+    <circle cx="0" cy="0" r="32" fill="#0D1411" stroke="#B8F25B" stroke-width="2"/>
+    <circle cx="0" cy="0" r="25" fill="none" stroke="#B8F25B" stroke-width="1" opacity="0.5"/>
+    <text
+      x="0"
+      y="12"
+      text-anchor="middle"
+      font-family="system-ui, -apple-system, sans-serif"
+      font-size="42"
+      font-weight="700"
+      fill="#B8F25B"
+    >P</text>
+  </g>
+</svg>

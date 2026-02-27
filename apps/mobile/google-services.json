@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "764764515699",
+    "project_id": "pouch-5459d",
+    "storage_bucket": "pouch-5459d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:764764515699:android:ac16130f8575466ad4e906",
+        "android_client_info": {
+          "package_name": "com.mithium.pouch"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQC5yzFuhC7QXwik3TXuJa7zBcXuZknTQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

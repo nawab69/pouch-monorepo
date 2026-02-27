@@ -1,0 +1,176 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradient for the pouch body -->
+    <linearGradient id="pouchGradient" x1="512" y1="200" x2="512" y2="850" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2E3B35"/>
+      <stop offset="100%" stop-color="#1A2520"/>
+    </linearGradient>
+
+    <!-- Gradient for the accent glow -->
+    <linearGradient id="accentGradient" x1="512" y1="280" x2="512" y2="420" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#CCFF66"/>
+      <stop offset="100%" stop-color="#B8F25B"/>
+    </linearGradient>
+
+    <!-- Subtle inner shadow -->
+    <filter id="innerShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="15" result="blur"/>
+      <feOffset dx="0" dy="8" result="offsetBlur"/>
+      <feComposite in="SourceGraphic" in2="offsetBlur" operator="over"/>
+    </filter>
+
+    <!-- Glow effect for accent -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="20" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1024" height="1024" rx="224" fill="#0D1411"/>
+
+  <!-- Subtle background pattern - grid dots -->
+  <g opacity="0.06" fill="#B8F25B">
+    <circle cx="128" cy="128" r="4"/>
+    <circle cx="256" cy="128" r="4"/>
+    <circle cx="384" cy="128" r="4"/>
+    <circle cx="512" cy="128" r="4"/>
+    <circle cx="640" cy="128" r="4"/>
+    <circle cx="768" cy="128" r="4"/>
+    <circle cx="896" cy="128" r="4"/>
+    <circle cx="128" cy="256" r="4"/>
+    <circle cx="256" cy="256" r="4"/>
+    <circle cx="384" cy="256" r="4"/>
+    <circle cx="512" cy="256" r="4"/>
+    <circle cx="640" cy="256" r="4"/>
+    <circle cx="768" cy="256" r="4"/>
+    <circle cx="896" cy="256" r="4"/>
+    <circle cx="128" cy="384" r="4"/>
+    <circle cx="256" cy="384" r="4"/>
+    <circle cx="384" cy="384" r="4"/>
+    <circle cx="512" cy="384" r="4"/>
+    <circle cx="640" cy="384" r="4"/>
+    <circle cx="768" cy="384" r="4"/>
+    <circle cx="896" cy="384" r="4"/>
+    <circle cx="128" cy="512" r="4"/>
+    <circle cx="256" cy="512" r="4"/>
+    <circle cx="384" cy="512" r="4"/>
+    <circle cx="640" cy="512" r="4"/>
+    <circle cx="768" cy="512" r="4"/>
+    <circle cx="896" cy="512" r="4"/>
+    <circle cx="128" cy="640" r="4"/>
+    <circle cx="256" cy="640" r="4"/>
+    <circle cx="384" cy="640" r="4"/>
+    <circle cx="640" cy="640" r="4"/>
+    <circle cx="768" cy="640" r="4"/>
+    <circle cx="896" cy="640" r="4"/>
+    <circle cx="128" cy="768" r="4"/>
+    <circle cx="256" cy="768" r="4"/>
+    <circle cx="384" cy="768" r="4"/>
+    <circle cx="512" cy="768" r="4"/>
+    <circle cx="640" cy="768" r="4"/>
+    <circle cx="768" cy="768" r="4"/>
+    <circle cx="896" cy="768" r="4"/>
+    <circle cx="128" cy="896" r="4"/>
+    <circle cx="256" cy="896" r="4"/>
+    <circle cx="384" cy="896" r="4"/>
+    <circle cx="512" cy="896" r="4"/>
+    <circle cx="640" cy="896" r="4"/>
+    <circle cx="768" cy="896" r="4"/>
+    <circle cx="896" cy="896" r="4"/>
+  </g>
+
+  <!-- Pouch body - main shape -->
+  <path
+    d="M256 380
+       C256 340, 300 300, 380 300
+       L644 300
+       C724 300, 768 340, 768 380
+       L768 420
+       C768 440, 760 460, 740 480
+       L780 520
+       C820 560, 840 620, 840 680
+       L840 720
+       C840 800, 780 860, 700 860
+       L324 860
+       C244 860, 184 800, 184 720
+       L184 680
+       C184 620, 204 560, 244 520
+       L284 480
+       C264 460, 256 440, 256 420
+       Z"
+    fill="url(#pouchGradient)"
+    stroke="#3D4F47"
+    stroke-width="5"
+  />
+
+  <!-- Pouch opening/drawstring area -->
+  <ellipse
+    cx="512"
+    cy="350"
+    rx="200"
+    ry="60"
+    fill="#0D1411"
+    stroke="#3D4F47"
+    stroke-width="4"
+  />
+
+  <!-- Drawstring cord - left -->
+  <path
+    d="M340 340
+       Q280 380, 300 440
+       Q320 500, 280 540"
+    fill="none"
+    stroke="url(#accentGradient)"
+    stroke-width="14"
+    stroke-linecap="round"
+    filter="url(#glow)"
+  />
+
+  <!-- Drawstring cord - right -->
+  <path
+    d="M684 340
+       Q744 380, 724 440
+       Q704 500, 744 540"
+    fill="none"
+    stroke="url(#accentGradient)"
+    stroke-width="14"
+    stroke-linecap="round"
+    filter="url(#glow)"
+  />
+
+  <!-- Drawstring knot/tie - left ball -->
+  <circle cx="280" cy="560" r="32" fill="#B8F25B" filter="url(#glow)"/>
+  <circle cx="280" cy="560" r="18" fill="#CCFF66"/>
+
+  <!-- Drawstring knot/tie - right ball -->
+  <circle cx="744" cy="560" r="32" fill="#B8F25B" filter="url(#glow)"/>
+  <circle cx="744" cy="560" r="18" fill="#CCFF66"/>
+
+  <!-- Highlight on pouch body -->
+  <path
+    d="M300 500
+       Q280 600, 320 700
+       Q340 760, 380 780"
+    fill="none"
+    stroke="#B8F25B"
+    stroke-width="4"
+    opacity="0.25"
+    stroke-linecap="round"
+  />
+
+  <!-- Second highlight -->
+  <path
+    d="M724 500
+       Q744 600, 704 700
+       Q684 760, 644 780"
+    fill="none"
+    stroke="#B8F25B"
+    stroke-width="4"
+    opacity="0.25"
+    stroke-linecap="round"
+  />
+</svg>

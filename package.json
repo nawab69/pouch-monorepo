@@ -1,0 +1,23 @@
+{
+  "name": "pouch-monorepo",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "dev:mobile": "turbo run dev --filter=@pouch/mobile",
+    "dev:server": "turbo run dev --filter=@pouch/server",
+    "dev:web": "turbo run dev --filter=@pouch/web",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down",
+    "docker:logs": "docker compose logs -f",
+    "setup": "node scripts/setup.js"
+  },
+  "devDependencies": {
+    "turbo": "^2"
+  },
+  "packageManager": "npm@10.0.0"
+}
