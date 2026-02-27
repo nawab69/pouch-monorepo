@@ -43,6 +43,11 @@
     <a href="#networks">Adding Networks</a>
     <a href="#api-keys">API Keys</a>
 
+    <div class="section-label">Platform Setup</div>
+    <a href="#firebase-mobile">Firebase (Mobile)</a>
+    <a href="#android-setup">Android Setup</a>
+    <a href="#ios-setup">iOS Setup</a>
+
     <div class="section-label">Deployment</div>
     <a href="#deploy-mobile">Mobile (EAS Build)</a>
     <a href="#deploy-server">Server</a>
@@ -272,6 +277,170 @@ FIREBASE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY----
   <li>Set the webhook URL to your deployed server's <code>/webhooks/alchemy</code> endpoint</li>
   <li>Copy the webhook ID and signing key into <code>apps/server/.env</code></li>
 </ol>
+
+<!-- FIREBASE MOBILE -->
+<h2 id="firebase-mobile">Firebase Setup (Mobile — Push Notifications)</h2>
+
+<p>The mobile app uses Firebase Cloud Messaging (FCM) via Expo's notification system. This requires platform-specific Firebase config files. The website uses Firebase Admin SDK separately (see <a href="#configuration">Configuration</a>).</p>
+
+<div class="alert alert-info">
+  <strong>Note:</strong> Push notifications only work in <strong>development builds</strong> or production — not in Expo Go. You will need to create a development build with <code>eas build</code> to test them.
+</div>
+
+<h3>Create a Firebase Project</h3>
+<ol>
+  <li>Go to the <a href="https://console.firebase.google.com/" target="_blank">Firebase Console</a></li>
+  <li>Click <strong>Add project</strong> and follow the wizard (you can disable Google Analytics)</li>
+  <li>Once created, you'll add platform-specific apps in the next steps</li>
+</ol>
+
+<!-- ANDROID SETUP -->
+<h2 id="android-setup">Android Setup</h2>
+
+<h3>Step 1: Register Android App in Firebase</h3>
+<ol>
+  <li>In the Firebase Console, click <strong>Add app</strong> &gt; <strong>Android</strong></li>
+  <li>Enter the Android package name: <code>com.mithium.pouch</code>
+    <div class="alert alert-warning" style="margin-top: 8px;">
+      <strong>Must match exactly:</strong> This must match the <code>"package"</code> field in <code>apps/mobile/app.json</code> under <code>expo.android.package</code>. If you change the package name, update both places.
+    </div>
+  </li>
+  <li>Click <strong>Register app</strong></li>
+  <li>Download the <code>google-services.json</code> file</li>
+</ol>
+
+<h3>Step 2: Place the Config File</h3>
+<p>Copy the downloaded <code>google-services.json</code> into the mobile app root:</p>
+<pre><code>cp ~/Downloads/google-services.json apps/mobile/google-services.json</code></pre>
+
+<p>The file is already referenced in <code>app.json</code>:</p>
+<pre><code>{
+  "expo": {
+    "android": {
+      "googleServicesFile": "./google-services.json",
+      "package": "com.mithium.pouch"
+    }
+  }
+}</code></pre>
+
+<div class="alert alert-warning">
+  <strong>Security:</strong> The <code>google-services.json</code> file is gitignored by default. Never commit it to a public repository. It contains your Firebase project configuration including API keys.
+</div>
+
+<h3>Step 3: Build and Test</h3>
+<pre><code># Create a development build for Android
+cd apps/mobile
+eas build --platform android --profile development
+
+# Install on device/emulator and test push notifications</code></pre>
+
+<h3>Customizing the Package Name</h3>
+<p>If you want to use your own Android package name (e.g., <code>com.yourcompany.pouch</code>), update these locations:</p>
+<ol>
+  <li><strong><code>apps/mobile/app.json</code></strong> — Change <code>expo.android.package</code></li>
+  <li><strong>Firebase Console</strong> — Register a new Android app with your package name and download a fresh <code>google-services.json</code></li>
+</ol>
+
+<!-- iOS SETUP -->
+<h2 id="ios-setup">iOS Setup</h2>
+
+<h3>Step 1: Register iOS App in Firebase</h3>
+<ol>
+  <li>In the Firebase Console, click <strong>Add app</strong> &gt; <strong>iOS</strong></li>
+  <li>Enter the iOS bundle ID: <code>com.nawabkibria12.pouch</code>
+    <div class="alert alert-warning" style="margin-top: 8px;">
+      <strong>Must match exactly:</strong> This must match the <code>"bundleIdentifier"</code> field in <code>apps/mobile/app.json</code> under <code>expo.ios.bundleIdentifier</code>. If you change the bundle ID, update both places.
+    </div>
+  </li>
+  <li>Click <strong>Register app</strong></li>
+  <li>Download the <code>GoogleService-Info.plist</code> file</li>
+</ol>
+
+<h3>Step 2: Place the Config File</h3>
+<p>Copy the downloaded plist into the mobile app root:</p>
+<pre><code>cp ~/Downloads/GoogleService-Info.plist apps/mobile/GoogleService-Info.plist</code></pre>
+
+<p>Then reference it in <code>app.json</code> by adding the <code>googleServicesFile</code> field under <code>ios</code>:</p>
+<pre><code>{
+  "expo": {
+    "ios": {
+      "googleServicesFile": "./GoogleService-Info.plist",
+      "bundleIdentifier": "com.nawabkibria12.pouch",
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSFaceIDUsageDescription": "Allow Pouch to use Face ID to unlock your wallet"
+      }
+    }
+  }
+}</code></pre>
+
+<h3>Step 3: Apple Push Notification Key (APNs)</h3>
+
+<p>iOS push notifications require an Apple Push Notification service (APNs) key. This is a <code>.p8</code> file that you upload to Firebase.</p>
+
+<div class="step">
+  <div class="step-number">1</div>
+  <div class="step-content">
+    <h4>Generate the APNs Key</h4>
+    <ol>
+      <li>Go to <a href="https://developer.apple.com/account/resources/authkeys/list" target="_blank">Apple Developer &gt; Keys</a></li>
+      <li>Click the <strong>+</strong> button to create a new key</li>
+      <li>Enter a name (e.g., "Pouch Push Notifications")</li>
+      <li>Check <strong>Apple Push Notifications service (APNs)</strong></li>
+      <li>Click <strong>Continue</strong>, then <strong>Register</strong></li>
+      <li>Download the <code>.p8</code> key file — <strong>save it securely, you can only download it once</strong></li>
+      <li>Note the <strong>Key ID</strong> shown on the page</li>
+    </ol>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-number">2</div>
+  <div class="step-content">
+    <h4>Upload to Firebase</h4>
+    <ol>
+      <li>In the Firebase Console, go to <strong>Project Settings</strong> &gt; <strong>Cloud Messaging</strong></li>
+      <li>Under <strong>Apple app configuration</strong>, click <strong>Upload</strong> next to APNs Authentication Key</li>
+      <li>Upload the <code>.p8</code> file you just downloaded</li>
+      <li>Enter the <strong>Key ID</strong> (from the Apple Developer portal)</li>
+      <li>Enter your <strong>Team ID</strong> (found at <a href="https://developer.apple.com/account/#/membership" target="_blank">Apple Developer &gt; Membership</a>)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-number">3</div>
+  <div class="step-content">
+    <h4>Build and Test</h4>
+    <pre><code># Create a development build for iOS
+cd apps/mobile
+eas build --platform ios --profile development
+
+# Install on simulator or physical device
+# Push notifications only work on physical iOS devices</code></pre>
+  </div>
+</div>
+
+<div class="alert alert-warning">
+  <strong>Important:</strong> iOS push notifications do <strong>not</strong> work on the iOS Simulator. You must test on a physical device. Also, you need an active <a href="https://developer.apple.com/programs/" target="_blank">Apple Developer Program</a> membership ($99/year).
+</div>
+
+<h3>Customizing the Bundle Identifier</h3>
+<p>If you want to use your own iOS bundle ID (e.g., <code>com.yourcompany.pouch</code>), update these locations:</p>
+<ol>
+  <li><strong><code>apps/mobile/app.json</code></strong> — Change <code>expo.ios.bundleIdentifier</code></li>
+  <li><strong>Firebase Console</strong> — Register a new iOS app with your bundle ID and download a fresh <code>GoogleService-Info.plist</code></li>
+  <li><strong>Apple Developer Portal</strong> — Create a new App ID with the matching bundle identifier</li>
+</ol>
+
+<h3>EAS Project Configuration</h3>
+<p>The <code>app.json</code> file references an EAS project ID. You must update this with your own Expo account's project:</p>
+<pre><code># Link your Expo account to this project
+cd apps/mobile
+eas init
+
+# This updates the projectId in app.json automatically</code></pre>
+<p>The <code>extra.eas.projectId</code> in <code>app.json</code> will be updated to your Expo account's project. This is required for push notification token generation and EAS builds.</p>
 
 <!-- FOLDER STRUCTURE -->
 <h2 id="folder-structure">Folder Structure</h2>
