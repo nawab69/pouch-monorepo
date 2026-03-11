@@ -9,12 +9,12 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true,
+      "supportsTablet": false,
       "infoPlist": {
         "NSFaceIDUsageDescription": "Allow Pouch to use Face ID to unlock your wallet",
         "ITSAppUsesNonExemptEncryption": false
       },
-      "bundleIdentifier": "com.nawabkibria12.pouch"
+      "bundleIdentifier": "com.mithium.pouch"
     },
     "android": {
       "googleServicesFile": "./google-services.json",

@@ -1,0 +1,74 @@
+APP NAME
+Pouch — Your Crypto Pocket
+
+SUBTITLE (30 chars)
+Non-Custodial Crypto Wallet
+
+PROMOTIONAL TEXT (170 chars)
+Store, send and swap crypto via top DEX integrations. Connect to any dApp with WalletConnect. Your keys, your coins, your rules. Always.
+
+DESCRIPTION
+Pouch is a non-custodial crypto wallet built for people who believe in true ownership. Whether you are just getting started with crypto or a seasoned Web3 user, Pouch gives you everything you need to store, send, swap and connect to the decentralized web — all from one clean, secure app.
+
+With Pouch, you are always in control. Your private keys are stored directly on your device. No third party holds your funds. No account to freeze. No middleman between you and your money.
+
+
+YOUR KEYS. YOUR COINS.
+
+Most crypto apps hold your assets on your behalf. Pouch does not. When you create a wallet, you receive a 12-word secret recovery phrase that only you will ever know. Your keys are encrypted and stored locally — never uploaded or shared with anyone. Your funds belong to you, always.
+
+No one can access your wallet. No one can freeze your account. No one can stop your transactions. You are your own bank.
+
+
+SWAP ON TOP DEXs
+
+Pouch connects to leading decentralized exchanges so you can swap tokens instantly without leaving the app. No sign-up. No KYC. No centralized exchange required. Choose your tokens, review the rate and confirm. Get competitive rates across popular DEX protocols — directly from your wallet.
+
+
+CONNECT TO ANY DAPP WITH WALLETCONNECT
+
+Pouch supports WalletConnect, the open protocol for connecting wallets to decentralized applications. Connect to DeFi platforms, NFT marketplaces, GameFi apps, DAO tools and more — with just a QR code scan or a deep link tap. No browser extension needed. No desktop required.
+
+
+KEY FEATURES
+
+- Non-custodial: you hold your own private keys
+- Secure 12-word secret recovery phrase at setup
+- Send and receive crypto quickly and easily
+- Swap tokens via top DEXs at competitive rates
+- WalletConnect support to connect to any dApp
+- Real-time token prices and portfolio tracking
+- Support for Ethereum and ERC-20 tokens
+- Clean, intuitive interface for everyday use
+
+
+BUILT FOR SECURITY
+
+Your wallet is encrypted on-device. Your private keys and recovery phrase are never stored on our servers or sent over the network. Pouch collects no personal data. There is no login and no centralized system that could expose your funds. The safest wallet is one where even the developer cannot access your money.
+
+
+SIMPLE FOR BEGINNERS. POWERFUL FOR PROS.
+
+Pouch guides you through wallet creation in minutes. Once set up, sending, swapping and connecting to dApps is just a few taps away. Power users get the full non-custodial experience with DEX integrations and WalletConnect that works with the most advanced dApps in the ecosystem.
+
+
+DISCLAIMER
+
+Pouch is a non-custodial wallet. We do not hold or control your funds. You are solely responsible for your secret recovery phrase. If lost, funds cannot be recovered by anyone. Store it securely offline and never share it.
+
+Crypto assets are volatile and involve significant risk. Swaps are executed via third-party protocols. Please do your own research. Pouch does not provide financial or investment advice.
+
+
+Download Pouch today and take your crypto into your own hands. Your pocket of Web3 is waiting.
+
+---
+
+CATEGORY
+Primary:   Finance
+Secondary: Utilities
+
+AGE RATING
+17+
+
+KEYWORDS (for App Store search)
+crypto wallet, non-custodial, DeFi, WalletConnect, DEX, swap, Ethereum, Web3, Bitcoin, self-custody
