@@ -9,10 +9,16 @@
       "distribution": "internal"
     },
     "preview": {
-      "distribution": "internal"
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_CACHE_SERVER_URL": "https://webhook.kibria.me"
+      }
     },
     "production": {
-      "autoIncrement": true
+      "autoIncrement": true,
+      "env": {
+        "EXPO_PUBLIC_CACHE_SERVER_URL": "https://webhook.kibria.me"
+      }
     }
   },
   "submit": {
